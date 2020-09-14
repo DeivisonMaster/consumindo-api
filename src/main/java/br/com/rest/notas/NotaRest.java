@@ -9,13 +9,21 @@ import com.sun.jersey.api.client.WebResource;
 import br.com.rest.model.Nota;
 
 public class NotaRest {
-
+	private Client client;
+	private WebResource webResource;
+	
+	public NotaRest() {
+		this.client = Client.create();
+		this.webResource = client.resource("http://www.deveup.com.br/notas/api/");
+	}
 	
 	public List<Nota> listar() {
-		Client client = Client.create();
-		WebResource webResource = client.resource("http://www.deveup.com.br/notas/api/");
-		
 		return webResource.path("notes").get(new GenericType<List<Nota>>() {});
+	}
+	
+	
+	public Nota obter(Integer id) {
+		return webResource.path("notes").path(id.toString()).get(new GenericType<Nota>() {});
 	}
 	
 	public static void main(String[] args) {
@@ -25,14 +33,26 @@ public class NotaRest {
 		for (Nota nota : notas) {
 			System.out.println(nota.getTitle());
 		}
+		
+		System.out.println("***************************************");
+		
+		Nota nota = n.obter(729);
+		System.out.println(nota.getTitle());
 	}
 	
-	
-	
-	
-	
-	
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

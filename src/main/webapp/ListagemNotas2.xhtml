@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+
+	<h:form>
+		<p:dataTable var="nota" value="#{notaController.notas}">
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText value="#{nota.id}" />
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Title" />
+				</f:facet>
+				
+				<h:commandLink action="#{notaController.obterDetalhes(nota)}" value="#{nota.title}">
+					<f:ajax execute="@this" render="frmDetalhesNota"/>
+				</h:commandLink>
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Body" />
+				</f:facet>
+				<h:outputText value="#{nota.body}" />
+			</p:column>
+			
+			<p:column>
+				<f:facet name="header">
+					<h:outputText value="Ações"/>
+				</f:facet>
+				<h:link value="Editar" outcome="Editar">
+					<f:param name="id" value="#{nota.id}"/>
+				</h:link>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+
+</body>
+</html>

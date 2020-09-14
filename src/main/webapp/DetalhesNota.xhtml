@@ -5,15 +5,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
     xmlns:p="http://primefaces.org/ui">
 
-<f:metadata>
-	<f:viewParam name="id" value="#{notaController.id}"/>
-	<f:event type="preRenderView" listener="#{notaController.obterDetalhes}"/>
-</f:metadata>
-
 <h:head>
 </h:head>
 <body>
-	<h:form>
+	<h:form id="frmDetalhesNota">
 		<h:panelGroup>
 			<p:outputLabel for="id" value="Id: "/>
 			<h:outputText id="id" value="#{notaController.nota.id}" />
