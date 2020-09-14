@@ -8,7 +8,7 @@
 
 <f:metadata>
 	<f:viewParam name="id" value="#{notaController.id}"/>
-	<f:event type="preRenderView" listener="#{notaController.initDetalhes}"/>
+	<f:event type="preRenderView" listener="#{notaController.obterDetalhes}"/>
 </f:metadata>
 
 <h:head>
@@ -33,7 +33,7 @@
 		</h:panelGroup>
 		
 		<br/>
-		<h:commandButton action="#{notaController.editar()}" value="Salvar" />
+		<h:commandButton action="#{notaController.editar}" value="Salvar" />
 	</h:form>
 </body> 
 </html>
