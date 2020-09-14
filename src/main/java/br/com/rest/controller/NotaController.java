@@ -30,9 +30,12 @@ public class NotaController implements Serializable{
 		this.notas = notaRest.listar();
 	}
 	
-	public Nota obterDetalhes() {
-		this.nota = this.notaRest.obter(this.id);
-		return nota;
+	public void obterDetalhes() {
+		if(this.id != null) {
+			this.nota = this.notaRest.obter(this.id);
+		}else {
+			this.nota = new Nota();
+		}
 	}
 	
 	public String obterDetalhes(Nota nota) {
@@ -41,7 +44,12 @@ public class NotaController implements Serializable{
 	}
 	
 	public String editar() {
-		this.notaRest.editar(this.nota);
+		if(this.id != null) {
+			this.notaRest.editar(this.nota);
+		}else {
+			this.notaRest.inserir(this.nota);
+		}
+		
 		this.listar();
 		
 		return "ListagemNotas";
