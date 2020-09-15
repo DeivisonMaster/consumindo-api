@@ -17,9 +17,9 @@ public class NotaRest {
 	private WebResource webResource;
 	
 	public NotaRest() {
-		ClientConfig config = new DefaultClientConfig(GensonProvider.class);
+		//ClientConfig config = new DefaultClientConfig(GensonProvider.class);
 		
-		this.client = Client.create(config);
+		this.client = Client.create();
 		client.addFilter(new LoggingFilter(System.out));
 		this.webResource = client.resource("http://www.deveup.com.br/notas/api/");
 	}
@@ -40,6 +40,10 @@ public class NotaRest {
 		webResource.path("notes").path(nota.getId().toString()).put(ClientResponse.class, nota);
 	}
 	
+	public void excluir(Integer id){
+		webResource.path("notes").path(id.toString()).delete();
+	}
+	
 	public static void main(String[] args) {
 		NotaRest n = new NotaRest();
 //		List<Nota> notas = n.listar();
@@ -55,8 +59,8 @@ public class NotaRest {
 		
 //		System.out.println("***************************************");
 		Nota n1 = new Nota();
-		n1.setId(732);
-		n1.setTitle("teste2");
+		n1.setId(743);
+		n1.setTitle("teste 222");
 		n1.setBody("hello world 444");
 		
 		n.editar(n1);
@@ -73,6 +77,9 @@ public class NotaRest {
 //		n2.setBody("nova nota");
 //		
 //		n.inserir(n2);
+		
+//		n.excluir(743);
+		
 	}
 	
 }

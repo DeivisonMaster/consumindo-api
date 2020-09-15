@@ -40,9 +40,12 @@
 				<f:facet name="header">
 					<h:outputText value="Ações"/>
 				</f:facet>
+				
 				<h:link value="Editar" outcome="Editar">
 					<f:param name="id" value="#{nota.id}"/>
 				</h:link>
+				
+				<h:commandLink action="#{notaController.remover(nota)}" value="Excluir" />
 			</p:column>
 		</p:dataTable>
 	</h:form>

@@ -55,6 +55,13 @@ public class NotaController implements Serializable{
 		return "ListagemNotas";
 	}
 	
+	public String remover(Nota nota) {
+		this.notaRest.excluir(nota.getId());
+		
+		this.listar();
+		return "ListagemNotas";
+	}
+	
 	public List<Nota> getNotas() {
 		return notas;
 	}
